@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="lib/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+<link href="lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>${pageTitle}</title>
+</head>
+<body>
+<header class="Hui-header cl"> <a class="Hui-logo l" title="${pageTitle}" href="main">${pageTitle}</a> <a class="Hui-logo-m l" href="main" title="${pageTitle}">${pageTitle}</a> <span class="Hui-subtitle l"></span> <span class="Hui-userbox"><span class="c-white">您好&nbsp;&nbsp;&nbsp;${loginUser.username}&nbsp;&nbsp;&nbsp;<#if loginUser.etime?if_exists>ukey有效期：${loginUser.etime?date("yyyy-MM-dd")}<#else>无限期</#if></span> <a class="btn btn-danger radius ml-10" href="logout" title="退出"><i class="icon-off"></i>退出</a></span> <a aria-hidden="false" class="Hui-nav-toggle" href="#"></a> </header>
+<aside class="Hui-aside">
+  <input runat="server" id="divScrollValue" type="hidden" value="" />
+  <div class="menu_dropdown bk_2">
+    <#list menulist as menu>
+      <#if menu.pid==0>
+      <dl id="menu_${menu.id}">
+        <dt><i class="${menu.ico}"></i> ${menu.name}<i class="iconfont menu_dropdown-arrow">&#xf02a9;</i></dt>
+        <dd>
+          <ul>
+          	<#list menulist as submenu>
+          		<#if submenu.pid=menu.id>
+            		<li><a _href="${submenu.link}" href="javascript:;" id="a_${menu.id}">${submenu.name}</a></li>
+            	</#if>
+            </#list>
+          </ul>
+        </dd>
+      </dl>
+      </#if>
+    </#list> 
+  </div>
+</aside>
+<div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+  <div id="Hui-tabNav" class="Hui-tabNav">
+    <div class="Hui-tabNav-wp">
+      <ul id="min_title_list" class="acrossTab cl">
+        <li class="active"><span title="我的首页" data-href="welcome">我的首页</span><em></em></li>
+      </ul>
+    </div>
+    <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="icon-step-backward"></i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="icon-step-forward"></i></a></div>
+  </div>
+  <div id="iframe_box" class="Hui-article">
+    <div class="show_iframe">
+      <div style="display:none" class="loading"></div>
+      <iframe scrolling="yes" frameborder="0" src="welcome"></iframe>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript" src="lib/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="lib/layer1.8/layer.min.js"></script> 
+<script type="text/javascript" src="js/H-ui.js"></script> 
+<script type="text/javascript" src="js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="js/H-ui.admin.doc.js"></script> 
+<script src="lib/artDialog/artDialog.js?skin=black"></script>
+<script type="text/javascript">
+		
+</script>
+</body>
+</html>

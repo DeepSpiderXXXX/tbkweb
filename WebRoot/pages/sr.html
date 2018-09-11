@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+		<title>天天淘惠统计</title>
+
+		<link href="AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+
+		<link href="css/personal.css" rel="stylesheet" type="text/css">
+		<link href="css/blstyle.css" rel="stylesheet" type="text/css">
+		<script src="AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		<style>
+			.button {
+				display: inline-block;
+				outline: none;
+				cursor: pointer;
+				text-align: center;
+				text-decoration: none;
+				font: 16px/100% 'Microsoft yahei',Arial, Helvetica, sans-serif;
+				padding: .3em .5em .5em .5em;
+				text-shadow: 0 1px 1px rgba(0,0,0,.3);
+				-webkit-border-radius: .5em; 
+				-moz-border-radius: .5em;
+				border-radius: .5em;
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+				box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			}
+			.button:hover {
+				text-decoration: none;
+			}
+			.button:active {
+				position: relative;
+				top: 1px;
+			}
+			/* blue */
+			.blue {
+				color: #d9eef7;
+				border: solid 1px #0076a3;
+				background: #0095cd;
+				background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+				background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+			}
+			.blue:hover {
+				background: #007ead;
+				background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+				background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+			}
+			.blue:active {
+				color: #80bed6;
+				background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+				background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+			}
+			/* orange */
+			.orange {
+				color: #d9eef7;
+				border: solid 1px #0076a3;
+				background: #fa7b00;
+				background: -webkit-gradient(linear, left top, left bottom, from(#fa7b00), to(#fa5a00));
+				background: -moz-linear-gradient(top,  #fa7b00,  #fa5a00);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa7b00', endColorstr='#fa5a00');
+			}
+			.orange:hover {
+				background: #fa5a00;
+				background: -webkit-gradient(linear, left top, left bottom, from(#fa5a00), to(#fa7b00));
+				background: -moz-linear-gradient(top,  #fa5a00,  #fa7b00);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa5a00', endColorstr='#fa7b00');
+			}
+			.orange:active {
+				color: #fa5a00;
+				background: -webkit-gradient(linear, left top, left bottom, from(#fa9600), to(#fa5a00));
+				background: -moz-linear-gradient(top,  #fa9600,  #fa5a00);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa9600', endColorstr='#fa5a00');
+			}
+		</style>
+		<script>
+			function searchall(a){
+				if(a!=0){
+					document.getElementById("orderno").value="";
+				}
+				document.getElementById("status").value=a;
+				document.getElementById("sform").submit();
+			}
+		</script>
+		<script>
+		//百度统计
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5d66cde56cd419a7e8988389cf0468b9";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+	</head>
+
+	<body>
+
+            
+
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+
+					<div class="user-bill">
+						<div class="ebill-section">
+							<div class="ebill-title-section">
+								<h2 class="trade-title section-title">
+                                   	${group.wxname}报表<span class="desc">&nbsp;&nbsp;&nbsp;<font color="red">今日</font>&nbsp;&nbsp;&nbsp;<a href="dd?id=${group.id}&flag=${flag}" style="color: #ffffff;">本月</a>&nbsp;&nbsp;&nbsp;<a href="ldd?id=${group.id}&flag=${flag}" style="color: #ffffff;">上月</a></span>
+                        		</h2>
+							</div>
+							<div class="module-income ng-scope">
+								<div class="income-slider ">
+									<div class="block-income block " style="width:100%">
+										<h3 class="income-title block-title">
+											预估收入<span class="num ng-binding">${tp.xg}<#if glist?if_exists>(${dygj})</#if></span>
+                                        </h3>
+                                        <h3 class="income-title block-title">
+                                        	结算收入<span class="num ng-binding">${tp.sr}<#if glist?if_exists>(${djs})</#if></span>
+                                        	
+                                        	<span class="desc ng-binding"><a>付款 ${tp.fk}</a></span>
+                                        </h3>
+                                        
+                                        <form id="sform" action="sr">
+	                                        <input type="hidden" name="id" value="${id}">
+	                                        <input type="hidden" name="status" id="status" value="${status}">
+	                                        <input type="hidden" name="flag" value="${flag}">
+	                                        <table width="96%" style="border-collapse:collapse; border-spacing:8px;border:solid 1px #d0dee5;margin-left:-8px">
+												<tr style="border-bottom:solid 1px #d0dee5;">
+	                                        		<td style="padding:0 1em 0;height:45px;line-height: 45px;" colspan="3">
+														<input type="text" placeholder="订单尾号" autocomplete="off" name="orderno" id="orderno" value="${orderno}" style="color: #888;width: 20%;padding: 0px 0px 0px 5px;border: 1px solid #C5E2FF;background: #FBFBFB;outline: 0;-webkit-box-shadow:inset 0px 1px 6px #ECF3F5;box-shadow: inset 0px 1px 6px #ECF3F5;font: 200 12px/25px Arial, Helvetica, sans-serif;height: 30px;">
+														&nbsp;
+														<input type="button" onclick="searchall(0);" value="查询" class="button blue">
+														&nbsp;
+														<input type="button" onclick="searchall(1);" value="付款" class="button orange">
+														&nbsp;
+														<input type="button" onclick="searchall(2);" value="结算" class="button orange">
+														&nbsp;
+														<input type="button" onclick="searchall(3);" value="失效" class="button orange">
+													</td>
+	                                        	</tr>
+	                                        	<#list srlist as sr>
+	                                        	<tr>
+	                                        		<td style="padding:0 1em 0;height:28px;line-height: 28px;">订单:${sr.orderno}</td>
+	                                        		<td style="padding:0 1em 0;height:28px;line-height: 28px;">付款:${sr.fee}</td>
+	                                        		<td style="padding:0 1em 0;height:28px;line-height: 28px;">佣金:${sr.yg}</td>
+	                                        	</tr>
+	                                        	<tr>
+	                                        		<td style="padding:0 1em 0;height:28px;line-height: 28px;" colspan="3">${sr.pname}</td>
+	                                        	</tr>
+	                                        	<tr style="border-bottom:solid 1px #d0dee5;" >
+	                                        		<td style="padding:0 1em 0;height:28px;line-height: 28px;" colspan="2">来源：<font color="red">${sr.adname}</font>&nbsp;&nbsp;${sr.createtime?datetime("yyyy-MM-dd HH:mm:ss")}</td>
+	                                        		<td style="padding:0 1em 0;height:28px;line-height: 28px;"><font <#if sr.status=="订单结算">color="#EE7600"<#elseif sr.status=="订单失效">color="green"<#elseif sr.status=="订单付款">color="#8470FF"</#if>>${sr.status}</font></td>
+	                                        	</tr>
+	                                        	</#list>
+	                                        </table>
+                                        </form>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+			
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.TbkGroupDao">
+    <select id="getTbkGroupList" parameterType="java.util.Map" resultType="com.limon.base.model.TbkGroup">
+		select * from tbk_group where uid=#{uid}
+		<if test="groupname != null and groupname !=''">  
+			and groupname like CONCAT('%',#{groupname},'%') 
+		</if>
+		order by createtime desc
+		limit #{pageStart} , #{pageSize}
+    </select>
+    <select id="getTbkGroupListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from tbk_group where uid=#{uid}
+		<if test="groupname != null and groupname !=''">  
+			and groupname like CONCAT('%',#{groupname},'%') 
+		</if>
+    </select>
+    <insert id="saveTbkGroup" parameterType="com.limon.base.model.TbkGroup" useGeneratedKeys="true" keyProperty="id">
+		insert into tbk_group(groupname,pid,uid,createtime,parentid,fc,wxname,stime,etime)values(#{groupname},#{pid},#{uid},#{createtime},#{parentid},#{fc},#{wxname},#{stime},#{etime})
+    </insert>
+    <update id="updateTbkGroup" parameterType="com.limon.base.model.TbkGroup">
+		update tbk_group set groupname=#{groupname},pid=#{pid},parentid=#{parentid},fc=#{fc},wxname=#{wxname},stime=#{stime},etime=#{etime} where id=#{id}
+    </update>
+    <delete id="deleteTbkGroup" parameterType="java.lang.String">
+		delete from tbk_group where id=#{id}
+    </delete>
+    <select id="getTbkGroupById" parameterType="java.lang.String" resultType="com.limon.base.model.TbkGroup">
+		select * from tbk_group where id=#{id}
+    </select>
+</mapper>

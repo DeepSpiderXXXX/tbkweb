@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>天天淘惠</title>
+		<link href="${basePath}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/basic/css/demo.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/css/seastyle.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${basePath}/basic/js/jquery-1.7.min.js"></script>
+		<script type="text/javascript" src="${basePath}/js/script.js"></script>
+		<style type="text/css"> 
+			body,table{ 
+				font-size:12px; 
+			} 
+			table{ 
+				table-layout:fixed; 
+				empty-cells:show; 
+				border-collapse: collapse; 
+				margin:0 auto; 
+			} 
+			td{ 
+				height:40px; 
+				vertical-align:middle;/*设置垂直居中*/
+			} 
+			h1,h2,h3{ 
+				font-size:12px; 
+				margin:0; 
+				padding:0; 
+			} 
+			.table{ 
+				border:1px solid #cad9ea; 
+				color:#666; 
+			} 
+			.table th { 
+				background-repeat:repeat-x; 
+				height:30px; 
+			} 
+			.table td,.table th{ 
+				border:1px solid #cad9ea; 
+				padding:0 1em 0; 
+			} 
+			.table tr.alter{ 
+				background-color:#f5fafe; 
+			} 
+		</style> 
+		<script type="text/javascript">
+			$(function() {
+				<#if rs=="0">
+					alert("导入失败");
+				<#elseif rs=="1">
+					alert("导入成功");
+				<#elseif rs=="2">
+					alert("清空失败");
+				<#elseif rs=="3">
+					alert("清空成功");
+				<#elseif rs=="4">
+					alert("一键清理过期商品成功");	
+				<#elseif rs=="5">	
+					alert("修改成功");	
+				<#elseif rs=="6">
+					alert("修改失败");		
+				</#if>            
+        	});
+			
+			function updatebanner(){
+				document.getElementById("mform").action="updatebanner";
+				document.getElementById("mform").submit();
+			}
+			
+			function setids(id){
+				var ids=document.getElementById("ids").value;
+				ids+=id+",";
+				document.getElementById("ids").value=ids;
+			}
+		</script>
+	</head>
+	<body>
+		<form id="mform" action="importexcel" enctype="multipart/form-data" method="post">
+		<input type="hidden" id="ids" name="ids" value="">
+		<table style="margin:auto;margin-top:20px;text-align:center" class="table">
+			<tr>
+				<td colspan="5">banner管理&nbsp;&nbsp;&nbsp;<input type="button" value="保存banner信息" onclick="updatebanner();"></td>
+			</tr>
+			<tr>
+				<td>图片</td>
+				<td>地址链接</td>
+				<td>背景色</td>
+				<td>排序（小数在前）</td>
+				<td>显示（0-否1-是）</td>
+			</tr>
+			<#list blist as banner>
+				<tr>
+					<td align="center"><img src="${basePath}/${banner.aimg}" style="width:100px;height20px;"><input type="file" name="bannerimg${banner.id}" onchange="setids('${banner.id}');"></td>
+					<td><input type="input" name="bannerurl${banner.id}" value="${banner.aurl}"></td>
+					<td><input type="input" name="bannercolor${banner.id}" style="width:80px;" value="${banner.acolor}"></td>
+					<td><input type="input" name="bannersort${banner.id}" style="width:115px;" value="${banner.sort}"></td>
+					<td><input type="input" name="bannerisshow${banner.id}" style="width:115px;" value="${banner.isshow}"></td>
+				</tr>
+			</#list>
+		</table>
+		</form>
+	</body>
+</html>

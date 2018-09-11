@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.TbkProductDao">
+	<insert id="saveTbkProduct" parameterType="java.util.Map">
+		insert into tbk_product(pid,imgurl,pname,sname,price,sprice,salenum,tbkshort,tbklong,tkl,totalcnum,leftcnum,ccontent,ctkl,clong,cshort,type,cstime,cetime,point,createdate,srbl,yhbl,yj,isshow,cprice,activityid,dtkid)
+		values
+		(#{pid},#{imgurl},#{pname},#{sname},#{price},#{sprice},#{salenum},#{tbkshort},#{tbklong},#{tkl},#{totalcnum},#{leftcnum},#{ccontent},#{ctkl},#{clong},#{cshort},#{type},#{cstime},#{cetime},#{point},#{createdate},#{srbl},#{yhbl},#{yj},#{isshow},#{cprice},#{activityid},#{dtkid})
+    </insert>
+    <insert id="saveTbkProductObj" parameterType="com.limon.base.model.TbkProduct">
+		insert into tbk_product(pid,imgurl,pname,sname,price,sprice,salenum,tbkshort,tbklong,tkl,totalcnum,leftcnum,ccontent,ctkl,clong,cshort,type,cstime,cetime,point,createdate,srbl,yhbl,yj,isshow,cprice,activityid,dtkid)
+		values
+		(#{pid},#{imgurl},#{pname},#{sname},#{price},#{sprice},#{salenum},#{tbkshort},#{tbklong},#{tkl},#{totalcnum},#{leftcnum},#{ccontent},#{ctkl},#{clong},#{cshort},#{type},#{cstime},#{cetime},#{point},#{createdate},#{srbl},#{yhbl},#{yj},#{isshow},#{cprice},#{activityid},#{dtkid})
+    </insert>
+    <insert id="saveTbkProductTop100Obj" parameterType="com.limon.base.model.TbkProduct">
+		insert into tbk_product_top100(pid,imgurl,pname,sname,price,sprice,salenum,tbkshort,tbklong,tkl,totalcnum,leftcnum,ccontent,ctkl,clong,cshort,type,cstime,cetime,point,createdate,srbl,yhbl,yj,isshow,cprice,activityid,dtkid)
+		values
+		(#{pid},#{imgurl},#{pname},#{sname},#{price},#{sprice},#{salenum},#{tbkshort},#{tbklong},#{tkl},#{totalcnum},#{leftcnum},#{ccontent},#{ctkl},#{clong},#{cshort},#{type},#{cstime},#{cetime},#{point},#{createdate},#{srbl},#{yhbl},#{yj},#{isshow},#{cprice},#{activityid},#{dtkid})
+    </insert>
+    <insert id="saveTbkProductPaoliangObj" parameterType="com.limon.base.model.TbkProduct">
+		insert into tbk_product_paoliang(pid,imgurl,pname,sname,price,sprice,salenum,tbkshort,tbklong,tkl,totalcnum,leftcnum,ccontent,ctkl,clong,cshort,type,cstime,cetime,point,createdate,srbl,yhbl,yj,isshow,cprice,activityid,dtkid)
+		values
+		(#{pid},#{imgurl},#{pname},#{sname},#{price},#{sprice},#{salenum},#{tbkshort},#{tbklong},#{tkl},#{totalcnum},#{leftcnum},#{ccontent},#{ctkl},#{clong},#{cshort},#{type},#{cstime},#{cetime},#{point},#{createdate},#{srbl},#{yhbl},#{yj},#{isshow},#{cprice},#{activityid},#{dtkid})
+    </insert>
+    <insert id="saveTbkProductList" parameterType="java.util.List">
+		insert into tbk_product(pid,imgurl,pname,sname,price,sprice,salenum,tbkshort,tbklong,tkl,totalcnum,leftcnum,ccontent,ctkl,clong,cshort,type,cstime,cetime,point,createdate,srbl,yhbl,yj,isshow,cprice,activityid,dtkid)
+		values
+		<foreach collection ="list" item="tp" index= "index" separator =",">
+		(#{tp.pid},#{tp.imgurl},#{tp.pname},#{tp.sname},#{tp.price},#{tp.sprice},#{tp.salenum},#{tp.tbkshort},#{tp.tbklong},#{tp.tkl},#{tp.totalcnum},#{tp.leftcnum},#{tp.ccontent},#{tp.ctkl},#{tp.clong},#{tp.cshort},#{tp.type},#{tp.cstime},#{tp.cetime},#{tp.point},#{tp.createdate},#{tp.srbl},#{tp.yhbl},#{tp.yj},#{tp.isshow},#{tp.cprice},#{tp.activityid},#{dtkid})
+		</foreach>
+    </insert>
+    <update id="updateTbkProduct" parameterType="java.util.Map">
+    	update tbk_product set pid=#{pid},imgurl=#{imgurl},pname=#{pname},sname=#{sname},price=#{price},sprice=#{sprice},salenum=#{salenum},tbkshort=#{tbkshort},tbklong=#{tbklong},tkl=#{tkl},totalcnum=#{totalcnum},leftcnum=#{leftcnum},ccontent=#{ccontent},ctkl=#{ctkl},clong=#{clong},cshort=#{cshort},type=#{type},cstime=#{cstime},cetime=#{cetime},point=#{point}
+    	where id=#{id}
+	</update>
+	<update id="updateTbkProductDate" parameterType="java.util.Map">
+    	update tbk_product set createdate=#{createdate} where id=#{id}
+	</update>
+	<update id="updateTbkProductShow" parameterType="java.lang.String">
+		update tbk_product set isshow=1 where type=#{type}
+	</update>
+	<update id="updateTbkProductSend" parameterType="java.lang.String">
+		update tbk_product set issend=1 where id=#{id}
+	</update>
+	<update id="updateTbkProductJh" parameterType="java.util.Map">
+		update tbk_product set isjh=1,srbl=#{srbl} where id=#{id}
+	</update>
+	<update id="updateTbkProductTy" parameterType="java.util.Map">
+		update tbk_product set isjh=0,srbl=#{srbl} where id=#{id}
+	</update>
+	<update id="updateTbkProductQqhd" parameterType="java.util.Map">
+		update tbk_product set isjh=2 where id=#{id}
+	</update>
+	<update id="updateTbkProductTkl" parameterType="java.util.Map">
+    	update tbk_product set tkl=#{tkl},ctkl=#{ctkl},isshow=1 where id=#{id}
+	</update>
+	<update id="updateTbkProductTg" parameterType="java.util.Map">
+    	update tbk_product set istg=1 where dtkid=#{id}
+	</update>
+    <delete id="deleteTbkProductByType" parameterType="java.util.Map">
+    	delete from tbk_product where type=#{type} and createdate!=#{createdate}
+	</delete>
+	<delete id="deleteTbkProductOutTime" parameterType="java.util.Map">
+    	delete from tbk_product where (now()>cetime and cstime!=cetime) or leftcnum=0
+	</delete>
+	<delete id="deleteTbkProductByDtkid" parameterType="java.lang.String">
+    	delete from tbk_product where dtkid=#{dtkid}
+	</delete>
+	<delete id="deleteTbkProductByDate" parameterType="java.lang.String">
+    	delete from tbk_product where createdate!=#{date}
+	</delete>
+	<delete id="deleteTbkProductLast7Date" parameterType="java.lang.String">
+    	delete from tbk_product where datediff(curdate(), createdate)>=1
+	</delete>
+	<delete id="deleteTbkProductAll" parameterType="java.lang.String">
+    	delete from tbk_product
+	</delete>
+	<delete id="deleteTbkProductTop100All" parameterType="java.lang.String">
+    	delete from tbk_product_top100
+	</delete>
+	<delete id="deleteTbkProductPaoliangAll" parameterType="java.lang.String">
+    	delete from tbk_product_paoliang
+	</delete>
+    <select id="getTbkProductList" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where isshow=1
+		<if test="searchkey != null and searchkey !=''">  
+			and pname like CONCAT('%',#{searchkey},'%') 
+		</if> 
+		<if test="type != null and type !=''">  
+			and type=#{type}
+		</if> 
+		order by ${colum} ${sort}
+ 		limit #{pageStart},#{pageSize}
+    </select>
+    <select id="searchTbkProduct" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where pname like CONCAT('%',#{searchkey},'%') limit #{start},1
+    </select>
+    <select id="getTbkProductCountByType" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	select count(id) from tbk_product where type=#{typename}
+    </select>
+    <select id="getTbkProductListAll" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product
+    </select>
+    <select id="getTbkProductListNoTkl" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where (tkl='' or tkl is null or ctkl='' or ctkl is null) and isshow=0 order by id desc limit 0,100
+    </select>
+    <select id="getTbkProductListNoTg" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where istg=0 order by id desc limit 0,100
+    </select>
+    <select id="getTbkProductListPoint3" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select DISTINCT a.*,b.* from tbk_product a left join tbk_group_send b on a.id=b.tpid where a.isshow=1
+		order by a.point desc
+ 		limit #{pageStart} , #{pageSize}
+    </select>
+    <select id="getTbkProductListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from tbk_product where isshow=1
+		<if test="searchkey != null and searchkey !=''">  
+			and pname like CONCAT('%',#{searchkey},'%') 
+		</if> 
+		<if test="type != null and type !=''">  
+			and type=#{type}
+		</if>
+    </select>
+    
+    <select id="getTbkProductByPid" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where pid=#{pid}
+    </select>
+    <select id="getTbkProductTop100ByPid" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product_top100 where pid=#{pid}
+    </select>
+    <select id="getTbkProductPaoliangByPid" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product_paoliang where pid=#{pid}
+    </select>
+    <select id="getTbkProductById" parameterType="java.lang.Integer" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where id=#{pid}
+    </select>
+    <select id="getTbkProductByNiId" parameterType="java.lang.String" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where pid=#{pid}
+    </select>
+    <update id="updateTbkProductPoint" parameterType="java.lang.Integer">
+    	update tbk_product set point=point+1 where id=#{id}
+	</update>
+	<update id="updateTbkProductPointRandom" parameterType="java.lang.Integer">
+    	update tbk_product set point=#{point} where dtkid=#{id}
+	</update>
+	<insert id="saveTbkGroupSend" parameterType="java.lang.Integer">
+		insert into tbk_group_send(tpid,createtime)
+		values
+		(#{tpid},now())
+    </insert>
+    <update id="updateTbkBanner" parameterType="java.util.Map">
+    	update tbk_banner 
+		<set>
+			<if test="aurl!=null and aurl!='' ">
+				aurl=#{aurl},
+			</if>
+			<if test="aimg!=null and aimg!='' ">
+				aimg=#{aimg},
+			</if>
+			<if test="acolor!=null and acolor!='' ">
+				acolor=#{acolor},
+			</if>
+			<if test="sort!=null and sort!='' ">
+				sort=#{sort},
+			</if>
+			<if test="isshow!=null and isshow!=''">
+				isshow=#{isshow},
+			</if>
+        </set>
+        where id=#{id}
+	</update>
+	<update id="updateTbkBannerStatus" parameterType="java.util.Map">
+    	update tbk_upload set isimport=1
+	</update>
+	<select id="getBannerList" parameterType="java.util.Map" resultType="com.limon.base.model.TbkBanner">
+    	select * from tbk_banner where isshow=1 order by sort 
+    </select>
+    <select id="getBannerListAll" parameterType="java.util.Map" resultType="com.limon.base.model.TbkBanner">
+    	select * from tbk_banner order by id
+    </select>
+    <select id="getTypeNum" parameterType="java.util.Map" resultType="com.limon.base.model.TypeNum">
+    	select count(type) as number,type as typename from tbk_product where isshow=1 group by type
+    </select>
+    <select id="getType" parameterType="java.util.Map" resultType="com.limon.base.model.TbkType">
+    	select * from tbk_type where 1=1
+		<if test="typename != null and typename !=''">  
+			and typename =#{typename}
+		</if> 
+		<if test="taobaotype != null and taobaotype !=''">  
+			and taobaotype like CONCAT('%',#{taobaotype},'%') 
+		</if> 
+		<if test="yj != null and yj !=''">  
+			and yj <![CDATA[ >= ]]> #{yj}
+		</if> 
+		<if test="srbl != null and srbl !=''">  
+			and srbl <![CDATA[ >= ]]> #{srbl}
+		</if>
+		<if test="yhbl != null and yhbl !=''">  
+			and yhbl <![CDATA[ >= ]]> #{yhbl}
+		</if>
+		<if test="salenum != null and salenum !=''">  
+			and salenum <![CDATA[ >= ]]> #{salenum}
+		</if>
+    </select>
+    <select id="getTypeList" parameterType="java.util.Map" resultType="com.limon.base.model.TbkType">
+    	select * from tbk_type where flag=1 order by sort desc
+    </select>
+    <select id="getGroupById" parameterType="java.lang.Integer" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where id=#{id}
+    </select>
+    <select id="getGroupByPid" parameterType="java.lang.Integer" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where parentid=#{id}
+    </select>
+    <select id="getGroupByPidAndZd" parameterType="java.lang.Integer" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where parentid=#{id} or iszd=1
+    </select>
+    <select id="getGroupByPidAndNoZd" parameterType="java.lang.Integer" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where parentid=#{id} and iszd=0
+    </select>
+    <select id="getAllGroupList" parameterType="java.lang.Integer" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group
+    </select>
+    <select id="getGroupByName" parameterType="java.lang.String" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where name=#{name}
+    </select>
+    <select id="getGroupByWxName" parameterType="java.lang.String" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where wxname=#{name}
+    </select>
+    <select id="getGroupByNameAndUid" parameterType="java.util.Map" resultType="com.limon.base.taobao.Group">
+    	select * from tbk_group where groupname=#{groupname} and uid=#{uid}
+    </select>
+    
+    <select id="getTbkProductSelect" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product_select where uid=#{uid} order by id asc limit #{start},1
+    </select>
+    <select id="getTbkProductSelectCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    	select count(*) from tbk_product_select where uid=#{uid}
+    </select>
+    <select id="getTbkProductTop100" parameterType="java.lang.Integer" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product_top100 order by id asc limit #{start},1
+    </select>
+    <select id="getTbkProductPaoliang" parameterType="java.lang.Integer" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product_paoliang order by id asc limit #{start},1
+    </select>
+    <select id="getTbkProductTotal" parameterType="java.lang.String" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_product where issend=0 and (srbl/100)*sprice > 2 and type=#{type} order by point desc limit 1,1
+    </select>
+    
+    <insert id="saveTbkSr" parameterType="com.limon.base.model.TbkSr">
+		insert into tbk_sr(pname,pid,sname,pnum,price,status,srbl,fcbl,fee,yg,yjbl,yj,plat,orderno,typename,adid,adname,createtime,pointtime)
+		values
+		(#{pname},#{pid},#{sname},#{pnum},#{price},#{status},#{srbl},#{fcbl},#{fee},#{yg},#{yjbl},#{yj},#{plat},#{orderno},#{typename},#{adid},#{adname},#{createtime},#{pointtime})
+    </insert>
+    <update id="updateTbkSr" parameterType="com.limon.base.model.TbkSr">
+    	update tbk_sr set
+    	pname=#{pname},pid=#{pid},sname=#{sname},pnum=#{pnum},price=#{price},status=#{status},srbl=#{srbl},fcbl=#{fcbl},yg=#{yg},fee=#{fee},yj=#{yj},yjbl=#{yjbl},plat=#{plat},orderno=#{orderno},typename=#{typename},adid=#{adid},createtime=#{createtime},pointtime=#{pointtime},updatetime=now()
+    	where id=#{id}
+    </update>
+    <update id="updateTbkGroup" parameterType="java.util.Map">
+    	update tbk_group set accountfee=accountfee+${fee} where wxname=#{wxname}
+    </update>
+    <update id="updateTbkGroupYg" parameterType="java.util.Map">
+    	update tbk_group set accountygfee=accountygfee+${ygfee} where wxname=#{wxname}
+    </update>
+    <select id="getTbkSrByOrderno" parameterType="java.lang.String" resultType="com.limon.base.model.TbkSr">
+    	select * from tbk_sr where orderno=#{orderno} and pid=#{pid} and fee=#{fee}
+    </select>
+    <select id="getTbkSrByOrdernoNoFee" parameterType="java.lang.String" resultType="com.limon.base.model.TbkSr">
+    	select * from tbk_sr where orderno=#{orderno} and pid=#{pid}
+    </select>
+	<select id="getTbkAccountRecord" parameterType="java.util.Map" resultType="java.lang.Integer">
+    	select count(*) from tbk_account_record where orderno=#{orderno} and pid=#{pid} and fee=#{fee} and remark=#{remark} and wxname=#{wxname} and srid=#{srid}
+    </select>
+    <select id="getTbkSrListByTime" parameterType="java.util.Map" resultType="com.limon.base.model.TbkSr">
+    	select * from tbk_sr where adname=#{adname}
+    	and createtime <![CDATA[>]]> #{stime} and createtime <![CDATA[<]]> #{etime} 
+    	
+		<if test="orderno != null and orderno !=''">  
+			and orderno like CONCAT('%',#{orderno},'') 
+		</if> 
+		
+		<if test="status != null and status !=''">  
+			and status =#{status}
+		</if> 
+    	order by createtime desc
+    </select>
+    <insert id="saveTbkPoint" parameterType="com.limon.base.model.TbkPoint">
+		insert into tbk_point(pointdate,wxname,point,fk,xg,sr)
+		values
+		(#{pointdate},#{wxname},#{point},#{fk},#{xg},#{sr})
+    </insert>
+    <update id="updateTbkPoint" parameterType="com.limon.base.model.TbkPoint">
+    	update tbk_point set pointdate=#{pointdate},wxname=#{wxname},fk=#{fk},xg=#{xg},point=#{point},sr=#{sr}
+    	where id=#{id}
+	</update>
+	 <select id="getTbkPointByDateAndWxname" parameterType="com.limon.base.model.TbkPoint" resultType="com.limon.base.model.TbkPoint">
+    	select * from tbk_point where wxname=#{wxname} and pointdate=#{pointdate}
+    </select>
+     <select id="getTbkPointByTimeAndWxname" parameterType="java.util.Map" resultType="com.limon.base.model.TbkPoint">
+    	select sum(point) as point,sum(fk) as fk,sum(xg) as xg,sum(sr) as sr from tbk_point where wxname=#{wxname} and pointdate <![CDATA[>=]]> #{stime} and pointdate <![CDATA[<=]]> #{etime}
+    </select>
+    
+    <select id="getTbkDaySend" parameterType="java.util.Map" resultType="com.limon.base.model.TbkDaySend">
+    	select a.id as sendid,a.sendtime,b.* from tbk_daysend a left join tbk_product b on a.pid=b.id where a.senddate=date_format(now(),'%y-%m-%d') order by sendtime desc limit #{pageStart} , #{pageSize}
+    </select>
+    
+    <select id="getTbkDaySendCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    	select count(*) from tbk_daysend a left join tbk_product b on a.id=b.id where a.senddate=date_format(now(),'%y-%m-%d')
+    </select>
+    
+    <select id="getTbkDaySendByPid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    	select count(*) from tbk_group_send where tpid=#{pid}
+    </select>
+    
+    <insert id="saveTbkDaySend" parameterType="java.util.Map">
+		insert into tbk_daysend(pid,sendtime,senddate)
+		values
+		(#{pid},now(),date_format(now(),'%y-%m-%d'))
+    </insert>
+    
+    <insert id="insertTbkAccountRecord" parameterType="java.util.Map">
+		insert into tbk_account_record(wxname,fee,remark,createtime,pid,orderno,srid)
+		values
+		(#{wxname},#{fee},#{remark},now(),#{pid},#{orderno},#{srid})
+    </insert>
+    
+    <select id="getTlmSearch" parameterType="java.util.Map" resultType="com.limon.base.model.TbkProduct">
+    	select * from tbk_tlm_search where pid=#{pid} and gid=#{gid} and createdate=#{createdate}
+    </select>
+    <insert id="saveTlmSearch" parameterType="com.limon.base.model.TbkProduct">
+		insert into tbk_tlm_search(pid,imgurl,pname,price,sprice,tkrate,gid,ctkl,clong,createdate)
+		values
+		(#{pid},#{imgurl},#{pname},#{price},#{sprice},#{tkrate},#{gid},#{ctkl},#{clong},#{createdate})
+    </insert>
+</mapper>

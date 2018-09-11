@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.SysMenuDao">
+    <select id="getRoleMenuList" parameterType="java.lang.Integer" resultType="com.limon.base.model.SysMenu">
+		select c.*
+		from sys_role a left join sys_role_menu b on a.id=b.roleid 
+		left join sys_menu c on b.menuid=c.id 
+		where a.id=#{roleid} order by sort
+    </select>
+</mapper>

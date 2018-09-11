@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.SysUserMngDao">
+   <select id="getSysUserList" parameterType="java.util.Map" resultType="com.limon.base.model.SysUser">
+		select * from sys_user where 1=1
+		<if test="username != null and username !=''">  
+			and username like CONCAT('%',#{username},'%') 
+		</if>
+		order by createtime desc
+		limit #{pageStart} , #{pageSize}
+    </select>
+    <select id="getSysUserListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from sys_user  where 1=1
+		<if test="username != null and username !=''">  
+			and username like CONCAT('%',#{username},'%') 
+		</if> 
+    </select>
+    <select id="getSysUserById" parameterType="java.lang.String" resultType="com.limon.base.model.SysUser">
+		select a.*,b.roleid from sys_user a left join sys_user_role b on a.id=b.userid where a.id=#{id}
+    </select>
+    <insert id="sysUserAdd" parameterType="com.limon.base.model.SysUser" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_user(username,password,realname,createtime,ukey,stime,etime)values(#{username},#{password},#{realname},#{createtime},#{ukey},#{stime},#{etime})
+    </insert>
+    <update id="sysUserUpdate" parameterType="com.limon.base.model.SysUser">
+		update sys_user set password=#{password},realname=#{realname},ukey=#{ukey},stime=#{stime},etime=#{etime} where id=#{id}
+    </update>
+    <update id="sysUserUpdateNoPwd" parameterType="com.limon.base.model.SysUser">
+		update sys_user set realname=#{realname},ukey=#{ukey},stime=#{stime},etime=#{etime} where id=#{id}
+    </update>
+    <update id="sysUserRoleUpdate" parameterType="com.limon.base.model.SysUser">
+		update sys_user_role set roleid=#{roleid} where userid=#{id}
+    </update>
+    <delete id="sysUserRoleDel"  parameterType="java.lang.Integer">
+		delete from sys_user_role where userid=#{id}
+    </delete>
+    <delete id="sysUserDel" parameterType="java.lang.String">
+		delete from sys_user where id=#{id}
+    </delete>
+    <select id="getAllRoleList" parameterType="java.util.Map" resultType="com.limon.base.model.SysRole">
+		select * from sys_role
+    </select>
+    <insert id="sysUserRoleAdd" parameterType="java.util.Map">
+		insert into sys_user_role(userid,roleid)values(#{userid},#{roleid})
+    </insert>
+    <select id="getIsUsedUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from sys_user where username=#{username}
+    </select>
+    <select id="getUserRoleById" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select roleid from sys_user_role where userid=#{id}
+    </select>
+</mapper>

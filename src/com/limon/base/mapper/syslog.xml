@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.SysLogDao">
+	<insert id="saveSysLog" parameterType="com.limon.base.model.SysLog">
+		insert into sys_log(content,logtype,logtime,loguser,logip)values
+		(#{content},#{logtype},#{logtime},#{loguser},#{logip})
+    </insert>
+    <select id="getLogTimes" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from sys_log where loguser=#{username} and logtype=3
+    </select>
+    <select id="getLastLogInfo" parameterType="java.lang.String" resultType="com.limon.base.model.SysLog">
+    	select * from sys_log where loguser=#{username} and logtype=3 order by logtime desc limit 1,1 
+    </select>
+    
+    <select id="getLogList" parameterType="java.util.Map" resultType="com.limon.base.model.SysLog">
+    	select * from sys_log 
+		<where>  
+			<if test="logtype != null and logtype !=''">  
+				and logtype = #{logtype}
+			</if> 
+			<if test="logstime != null and logstime !=''">  
+				and logtime <![CDATA[>]]> #{logstime}
+			</if> 
+			<if test="logetime != null and logetime !=''">  
+				and logtime <![CDATA[<]]> #{logetime}
+			</if> 
+			<if test="logcontent != null and logcontent !=''">  
+				and content like CONCAT('%',#{logcontent},'%') 
+			</if> 
+		</where>
+		order by logtime desc
+ 		limit #{pageStart} , #{pageSize}
+    </select>
+    
+    <select id="getLogListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from sys_log
+		<where>  
+			<if test="logtype != null and logtype !=''">  
+				and logtype = #{logtype}
+			</if> 
+			<if test="logstime != null and logstime !=''">  
+				and logtime <![CDATA[>]]> #{logstime}
+			</if> 
+			<if test="logetime != null and logetime !=''">  
+				and logtime <![CDATA[<]]> #{logetime}
+			</if> 
+			<if test="logcontent != null and logcontent !=''">  
+				and content like CONCAT('%',#{logcontent},'%') 
+			</if> 
+		</where>  
+    </select>
+</mapper>

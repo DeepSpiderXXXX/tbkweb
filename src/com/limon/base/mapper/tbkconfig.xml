@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.TbkConfigDao">
+	<select id="getTbkConfig" parameterType="java.lang.String" resultType="com.limon.base.model.TbkConfig">
+		select * from tbk_config where ckey=#{ckey}
+    </select>
+    <select id="getTbkConfigs" parameterType="java.util.Map"
+		resultType="com.limon.base.model.TbkConfig">
+			select * from tbk_config
+			<where>
+				<if test="ckey != null and ckey !=''">
+					ckey like '%' || #{ckey} || '%'
+				</if>
+			</where>
+		limint #{pageStart} ,#{pageSize}
+	</select>
+	<select id="getTbkConfigsCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(*) from tbk_config
+		<where>
+			<if test="ckey != null and ckey !=''">
+				ckey like '%' || #{ckey} || '%'
+			</if>
+		</where>
+	</select>
+	<select id="getTbkConfigsNoPage" parameterType="java.util.Map"
+		resultType="com.limon.base.model.TbkConfig">
+		select * from tbk_config
+		<where>
+			<if test="id != null and id !=''">
+				id=#{id}
+			</if>
+			<if test="ckey != null and ckey !=''">
+				and ckey=#{ckey}
+			</if>
+		</where>
+	</select>
+	<select id="getIsUseTbkConfig" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from tbk_config
+		<where>
+			<if test="id != null and id !=''">
+				id!=#{id}
+			</if>
+			<if test="ckey != null and ckey !=''">
+				and ckey=#{ckey}
+			</if>
+		</where>
+	</select>
+	<insert id="insertTbkConfig" parameterType="java.util.Map">
+		insert into tbk_config (ckey,cvalue)
+		values
+		(#{ckey},#{cvalue})
+	</insert>
+	<select id="getTbkConfigById" parameterType="java.util.Map"
+		resultType="com.limon.base.model.TbkConfig">
+		select * from tbk_config where id=#{id}
+	</select>
+	<update id="updateTbkConfigById" parameterType="java.util.Map">
+		update tbk_config set cvalue=#{cvalue} where ckey=#{ckey}
+	</update>
+	<delete id="deleteTbkConfigById" parameterType="java.util.Map">
+    	delete from tbk_config where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd"> 
+    <!-- 扫描文件（自动将servicec层注入） -->
+    <context:component-scan base-package="com.limon.*.service,com.limon.base.common,com.limon.common.init,com.limon.util"/>
+    
+    <!-- ApplicationContext获取工具 -->
+    <bean id="SpringApplicationContext" class="com.limon.base.common.ApplicationContextHelper"></bean>
+    
+    <!-- 文件上传调用工具类 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <!-- set the max upload size100MB -->  
+        <property name="maxUploadSize">  
+            <value>104857600</value>  
+        </property>  
+        <property name="maxInMemorySize">  
+            <value>4096</value>  
+        </property>  
+    </bean>	
+	
+	<bean id="timerFactoryData" class="org.springframework.scheduling.timer.TimerFactoryBean">
+	    <property name="scheduledTimerTasks">
+	        <list>
+	       		<ref bean="updateDataScheduled"></ref>
+	      	</list>
+	    </property>
+	</bean>
+	
+	<bean id="timerFactoryPass" class="org.springframework.scheduling.timer.TimerFactoryBean">
+	    <property name="scheduledTimerTasks">
+	        <list>
+	       		<ref bean="updatePassScheduled"></ref>
+	      	</list>
+	    </property>
+	</bean>
+
+	<!-- 定时删除过期商品 单位毫秒 -->
+	<bean id="updatePassScheduled" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<!-- 延迟30秒运行 -->
+		<property value="30000" name="delay"></property>
+	    <!-- 每隔10分钟运行一次 -->
+	    <property value="600000" name="period"></property>
+	    <property name="timerTask" ref="updatePassTask"></property>
+	</bean>
+	<bean id="updatePassTask" class="com.limon.base.init.task.UpdatePassTask">
+	</bean>
+	
+	<!-- 定时更新订单数据 单位毫秒 -->
+	<bean id="updateDataScheduled" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<!-- 延迟10秒运行 -->
+		<property value="10000" name="delay"></property>
+	    <!-- 每隔180秒运行一次 -->
+	    <property value="180000" name="period"></property>
+	    <property name="timerTask" ref="updateDataTask"></property>
+	</bean>
+	<bean id="updateDataTask" class="com.limon.base.init.task.UpdateDataTask">
+	</bean>
+</beans>

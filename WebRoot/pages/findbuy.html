@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="keywords" content="淘宝优惠,淘宝优惠券,天天淘惠微信,淘宝优惠券,优惠券,淘宝,淘宝网,特价,天猫,天猫超市,淘宝首页,天天,天天淘,天天惠,天天淘惠,淘客,优惠,秒杀,淘宝秒杀,天猫优惠券,天猫优惠,天猫秒杀" />
+		<meta name="description" content="淘宝优惠信息,天天淘惠,天天淘,天天惠" />
+		<meta name="applicable-device" content="pc,mobile">
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="bookmark" href="/favicon.ico" type="image/x-icon"　/>
+		<title>天天淘惠</title>
+		<link href="${basePath}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/basic/css/demo.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/css/seastyle.css" rel="stylesheet" type="text/css" />
+		<link href="${basePath}/css/hmstyle.css" rel="stylesheet" type="text/css"/>
+	    <link href="${basePath}/css/toolstyle.css" rel="stylesheet" type="text/css">
+	    
+		<script type="text/javascript" src="${basePath}/basic/js/jquery-1.7.min.js"></script>	
+		<script type="text/javascript" src="${basePath}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+		<script type="text/javascript" src="${basePath}/js/script.js"></script>
+		<script type="text/javascript" src="${basePath}/layer_mobile/layer.js"></script>
+		<style>
+		#elevator_item {
+			width: 60px;
+			height: 100px;
+			position: fixed;
+			right: 15px;
+			bottom: 10px;
+		-webkit-transition: opacity .4s ease-in-out;
+		-moz-transition: opacity .4s ease-in-out;
+		-o-transition: opacity .4s ease-in-out;
+			opacity: 1;
+			z-index: 100020;
+			display: none;
+		}
+		#elevator_item.off {
+			opacity: 0;
+			visibility: hidden
+		}
+		#elevator {
+			display: block;
+			width: 60px;
+			height: 50px;
+			background: url(${basePath}/images/1312_4.png) center center no-repeat;
+			background-color: #444;
+			background-color: rgba(0, 0, 0, .6);
+			border-radius: 2px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+			cursor: pointer;
+			margin-bottom: 10px
+		}
+		#elevator:hover {
+			background-color: rgba(0, 0, 0, .7)
+		}
+		#elevator:active {
+			background-color: rgba(0, 0, 0, .75)
+		}
+		#elevator_item .qr {
+			display: block;
+			width: 60px;
+			height: 40px;
+			border-radius: 2px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+			cursor: pointer;
+			background: url(${basePath}/images/1312_3.png) center center no-repeat;
+			background-color: #444;
+			background-color: rgba(0, 0, 0, .6)
+		}
+		#elevator_item .qr:hover {
+			background-color: rgba(0, 0, 0, .7)
+		}
+		#elevator_item .qr:active {
+			background-color: rgba(0, 0, 0, .75)
+		}
+		#elevator_item .qr-popup {
+			width: 170px;
+			height: 200px;
+			background: #fff;
+			box-shadow: 0 1px 8px rgba(0, 0, 0, .1);
+			position: absolute;
+			left: -180px;
+			bottom: 0;
+			border-radius: 2px;
+			display: none;
+			text-align: center
+		}
+		#elevator_item .qr-popup .code-link {
+			display: block;
+			margin: 10px;
+			color: #777
+		}
+		#elevator_item .qr-popup .code {
+			display: block;
+			margin-bottom: 10px
+		}
+		#elevator_item .qr-popup .arr {
+			width: 6px;
+			height: 11px;
+			background: url(${basePath}/images/1312_2.png) 0 0 no-repeat;
+			position: absolute;
+			right: -6px;
+			bottom: 14px
+		}
+		</style>
+		<script>
+		//百度统计
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5d66cde56cd419a7e8988389cf0468b9";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+		<script type="text/javascript">
+		function tourl(url,pname,imgurl){
+			window.location.href=url+"&pname="+encodeURIComponent(encodeURIComponent(pname))+"&imgurl="+imgurl;
+		}
+		//滚动加载更多脚本
+		var stop=true; 
+		$(window).scroll(function(){ 
+		    totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
+		    if($(document).height() <= totalheight){ 
+		        if(stop==true){ 
+		            stop=false;
+		            var page=$("#currentPage").val();
+		            var searchkey=$("#searchInput").val();
+		            var type=$("#type").val();
+		            var colum=$("#colum").val();
+		            var sort=$("#sort").val();
+		            var g=$("#g").val();
+		            if(page<<#if page?if_exists && page.totalPage?if_exists>${page.totalPage?c}<#else>5</#if>){
+		            	$("#loading").show();
+		            	//加载数据
+		            	$.ajax({
+					        type: "post",
+					        contentType: "application/json",
+					        url: "loadfindbuy?currentPage="+page+"&searchkey="+encodeURIComponent(encodeURIComponent(searchkey))+"&g=${g}",
+					        data: "{}",
+					        success: function (result) {
+					        	var alist=result.plist;
+					        	var rlist=result.rlist;
+						       	var datastr="";
+						       	var pointstr="";
+						       	//循环商品列表
+					        	for (var i = 0; i < alist.length; i++) {
+				                    datastr+="<li>";
+				                    datastr+="<div class=\"i-pic limit\">";
+				                    
+				                    datastr+="<img src=\""+alist[i].imgurl+"\" onclick=\"tourl('lmtkbuy?id="+alist[i].pid+"&g=${g}&price="+alist[i].price+"&sprice="+alist[i].sprice+"&srbl="+alist[i].srbl+"','"+alist[i].pname+"','"+alist[i].imgurl+"')\">";
+				                    datastr+="<p class=\"title fl\" title=\""+alist[i].pname+"\">"+alist[i].pname+"</p>";
+									datastr+="<p class=\"price fl\" style=\"margin-top:-5px;color:gray;font-size:14px;\">原价<strike><b>¥</b>"+alist[i].price+"</strike>&nbsp;<span style=\"font-size:10px;color:#fff;background-color:red;padding:2px 2px 2px 2px;\">"+alist[i].cprice+"元券</span></p>";		
+									
+									datastr+="<p class=\"price fl\" style=\"margin-top:-12px;font-size:14px;color:red\">券后<strong><b>¥</b>"+alist[i].sprice+"</strong></p>";														
+									
+									datastr+="<p class=\"number fl\" style=\"font-size:12px;bottom:50px;\">销量&nbsp;<span style=\"\">"+alist[i].salenum+"</span></p>";			
+									
+									datastr+="<div style=\"text-align:center;margin-top:10px;margin-bottom:10px;\">";
+									datastr+="<a class=\"btn\" href=\"javascript:tourl('lmtkbuy?id="+alist[i].pid+"&g=${g}&price="+alist[i].price+"&sprice="+alist[i].sprice+"&srbl="+alist[i].srbl+"','"+alist[i].pname+"','"+alist[i].imgurl+"')\"><div class=\"am-btn am-btn-danger\">淘口令购买</div></a>&nbsp;";
+									
+									datastr+="</div>";
+									
+									datastr+="</div>";	
+									datastr+="</li>";
+				                }
+				                
+					        	$("#currentPage").val(result.page);
+					        	$("#thelist").append(datastr);
+			                	stop=true; 
+			                	$("#loading").hide();
+					        }
+				    	});
+		            }else{
+		            	//没有数据了
+		            	$("#ending").show();
+		            }
+		        } 
+		    } 
+		});
+		
+		function search(page){
+			$("#currentPage").val(page);
+			$("#sform").submit();
+		}
+		
+		
+		//回到顶部、二维码
+		$(function() {
+			$(window).scroll(function(){
+				var scrolltop=$(this).scrollTop();		
+				if(scrolltop>=200){		
+					$("#elevator_item").show();
+				}else{
+					$("#elevator_item").hide();
+				}
+			});		
+			$("#elevator").click(function(){
+				$("html,body").animate({scrollTop: 0}, 500);	
+			});		
+			$(".qr").hover(function(){
+				$(".qr-popup").show();
+			},function(){
+				$(".qr-popup").hide();
+			});	
+		});
+		</script>
+		<div id='wx_pic' style='margin:0 auto;display:none;width:300px;height;300px;'>
+		<img src='images/logo.png' />
+		</div>
+	</head>
+	<body>
+		<div class="hmtop">
+			<!--顶部导航条 -->
+			<div class="am-container header"></div>
+			<!--悬浮搜索框-->
+			<div class="nav white">
+				<div class="logo"><img src="images/logo.png" /></div>
+				<div class="logoBig">
+					<li><img src="images/logobig.png" /></li>
+				</div>
+				<div class="search-bar pr">
+					<a name="index_none_header_sysc" href="#"></a>
+					<form method="post" action="findbuy" id="sform">
+						<input type="hidden" name="g" id="g" value="${g}"/>
+						<input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"/>
+						<input id="searchInput" name="searchkey" type="text" placeholder="输入想要的商品名称" autocomplete="off" value="${searchkey}">
+						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="button" onclick="search(1);">
+					</form>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>	
+
+
+        <div class="search"  <#if browser="wx"||browser="mobile">style="margin-top:-50px;</#if>">
+			<div class="search-list">
+				<div class="am-g am-g-fixed">
+					<div class="am-u-sm-12 am-u-md-12">
+							<div class="search-content" style="margin-top:100px;">
+								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes" id="thelist">
+									<#if plist?if_exists&&plist?size gt 0>
+									<#list plist as p>
+									<li>
+										<div class="i-pic limit">
+											<img src="${p.imgurl}" onclick="tourl('lmtkbuy?id=${p.pid?c}&g=${g}&price=${p.price}&sprice=${p.sprice}&srbl=${p.srbl}','${p.pname}','${p.imgurl}');"/>											
+											<p class="title fl" title="${p.pname}">${p.pname}</p>
+											<p class="price fl" style="margin-top:-5px;color:gray;font-size:14px;">
+												原价<strike><b>¥</b>${p.price}</strike>
+												&nbsp;<span style="font-size:10px;color:#fff;background-color:red;padding:2px 2px 2px 2px;">${p.cprice}元券</span>
+											</p>
+											<p class="price fl" style="margin-top:-12px;font-size:14px;color:red">
+												券后<strong><b>¥</b>${p.sprice}</strong>
+											</p>
+											<p class="number fl" style="font-size:12px;bottom:50px;">
+												销量&nbsp;<span style="">${p.salenum?c}</span>
+											</p>
+											
+											<div style="text-align:center;margin-top:10px;margin-bottom:10px;">
+												<a class="btn" href="javascript:tourl('lmtkbuy?id=${p.pid?c}&g=${g}&price=${p.price}&sprice=${p.sprice}&srbl=${p.srbl}','${p.pname}','${p.imgurl}');">
+													<div class="am-btn am-btn-danger">淘口令购买</div>
+												</a>								
+											</div>
+										</div>
+									</li>
+									</#list>
+									<#else>
+										<div style="text-align:center;margin-top:30px;">根据您的查询条件未找到优惠商品</div>
+									</#if>
+								</ul>
+							</div>
+							<div class="clear"></div>
+							<!--分页 -->
+							<div id="loading" style="margin-top:10px;margin-bottom:10px;text-align:center;display:none"><img src="${basePath}/images/myloading.gif" style="width:30px;height:30px;"></div>
+							<div id="ending" style="margin-top:10px;margin-bottom:10px;text-align:center;display:none">没有更多商品了</div>
+							<ul class="am-pagination am-pagination-centered" style="display:none">
+								${page.currentPage}/${page.totalPage}&nbsp;
+								<li <#if page.currentPage==1>class="am-disabled"</#if>><a href="javascript:search(<#if page.currentPage?if_exists>${page.currentPage-1}<#else>1</#if>);">&laquo;</a></li>
+									<#if page.totalPage gt 5 >
+										<#if page.currentPage lt 6>
+											<#list 1..5 as t> 
+												<li <#if page.currentPage==t>class="am-active"</#if>><a href="javascript:search(${t});">${t}</a></li>
+											</#list>
+											<li <#if page.currentPage==page.totalPage>class="am-disabled"</#if>><a href="javascript:search(${page.currentPage+1});">&raquo;</a></li>
+										<#elseif page.currentPage gt 5 && (page.currentPage+4) lt page.totalPage>
+											<#list (((page.currentPage-1)/5)?floor*5+1)..(((page.currentPage-1)/5)?floor*5+5) as t> 
+												<li <#if page.currentPage==t>class="am-active"</#if>><a href="javascript:search(${t});">${t}</a></li>
+											</#list>
+											<li <#if page.currentPage==page.totalPage>class="am-disabled"</#if>><a href="javascript:search(${page.currentPage+1});">&raquo;</a></li>
+										<#elseif  (page.currentPage+4) gt (page.totalPage-1)>
+											<#list (page.totalPage-4)..page.totalPage as t> 
+												<li <#if page.currentPage==t>class="am-active"</#if>><a href="javascript:search(${t});">${t}</a></li>
+											</#list>
+											<li class="am-disabled"><a href="javascript:search(${page.currentPage+1});">&raquo;</a></li>
+										</#if>
+									<#else>
+										<#list 1..page.totalPage as t> 
+											<li <#if page.currentPage==t>class="am-active"</#if>><a href="javascript:search(${t});">${t}</a></li>
+										</#list>
+										<li <#if page.currentPage==page.totalPage>class="am-disabled"</#if>><a href="javascript:search(${page.currentPage+1});">&raquo;</a></li>
+									</#if>
+								</ul>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="footer-bd">
+							<p style="text-align:center">
+								<em>Copyright© 2017-2027  天天淘惠  版权所有  <a href="http://www.anyv.net" target="_blank">微信推广</a>  <a href="http://www.hao123.com/">hao123</a>  <a href="http://hao.360.cn/" target="_blank" >360导航</a>  <a href="http://se.360.cn/" target="_blank" >360安全浏览器</a></em>
+							</p>
+						</div>
+											</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 回到顶部、二维码 -->
+		<div id="jquery-script-menu">
+		  <div class="jquery-script-center">
+		    <div class="jquery-script-clear"></div>
+		  </div>
+		</div>
+		<div id="elevator_item"> <a id="elevator" onclick="return false;" title="Back To Top"></a> 
+		<!--
+			<a class="qr"></a>
+		   <div class="qr-popup"> <a class="code-link"> <img class="code" src="${basePath}/images/ewm.jpg" width="150" height="150"/> </a> <span><#if browser="wx">长按识别二维码<#else>扫描二维码</#if></span> -->
+		    <div class="arr"></div>
+		  </div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>${tp.pname}</title>
+		<link href="${basePath}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${basePath}/basic/js/jquery-1.7.min.js"></script>	
+		<div id='wx_pic' style='margin:0 auto;display:none;width:300px;height;300px;'>
+		<img src='${tp.imgurl}' />
+		</div>
+		<script>
+		//百度统计
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5d66cde56cd419a7e8988389cf0468b9";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+	</head>
+</head>
+<style>
+div, body {
+	padding: 0;
+	margin: 0;
+	 color:#020202; font-family:"Arial", "Microsoft YaHei"
+}
+.wapper {
+	width:100%;
+	margin: 0 auto;
+}
+.ydimg {
+	border: none; width:100%; vertical-align: top;
+}
+
+</style>
+<script type="text/javascript">
+function isAndWeiXin(){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf("Android")!=-1){
+		var ua = window.navigator.userAgent.toLowerCase();
+		if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}
+}
+
+$(function ($) {
+    document.addEventListener("selectionchange", function (e) {
+    	if(!isAndWeiXin()){
+	        if (window.getSelection().anchorNode.parentNode.id == 'copy_key' && document.getElementById('copy_key').innerText != window.getSelection()) {
+	            var key = document.getElementById('copy_key');
+	            window.getSelection().selectAllChildren(key);
+	        }
+        }
+    }, false);
+});	
+
+function tosend(id){
+	$.ajax({
+		url: "addsend?id="+id+"&g=${g}", 
+		type:'post', 
+		success:function(data) { 
+	       	if(data=="success"){
+	       		$("#issend").html("已加群发");
+	       		alert("加入群发成功");
+	       	}else if(data=="toomany"){
+	       		alert("同品类商品还有5个未群发,稍后再试");
+	       	}else if(data=="has"){
+	       		$("#issend"+id).html("已群发");
+	       		alert("该商品已群发");
+	       	}
+		}
+	});
+}
+</script>
+<body>
+<div class="wapper"> 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  	<td align="center"><br></td>
+  </tr>
+  <tr>
+    <td align="center"><img style="width:70%" src="${tp.imgurl}" /></td>
+  </tr>
+  <tr>
+  	<td align="center"><div style="width:90%;margin-top:10px;"><div style="width:100%;margin:auto;text-align:left;height:100%;font-size:18px;border:1px dashed #F00;padding:4px 4px 4px 4px;border-radius: 4px;"><span id="copy_key" style="">${tp.pname}<br>【在售价】${tp.price}<br>【领券价】${tp.sprice}<br>复制信息<#if isjh==5>${tp.tkl}<#else>${tp.ctkl}</#if><br>打开手机淘宝即可查看</span></div></div></td>
+  </tr>
+  <tr>
+  	<td align="center">
+  		<#if tp.isjh==5>
+  			<button class="am-btn am-btn-danger" style="margin-top:10px;" id="btn0" data-clipboard-text="${tp.ctkl}">一键领券</button>&nbsp;&nbsp;&nbsp;
+  			<button class="am-btn am-btn-danger" style="margin-top:10px;" id="btn1" data-clipboard-text="${tp.tkl}">一键购买</button>
+  		<#else>
+	  		<button class="am-btn am-btn-danger" style="margin-top:10px;" id="btn" data-clipboard-text="${tp.ctkl}">一键复制</button>
+  		</#if>
+  	</td>
+  </tr>
+  <tr>
+  	<td align="center">
+  	<div style="margin:auto;text-align:center;margin-top:15px;color:red"><#if tp.isjh==0&&stg==1>(通用计划)<#elseif tp.isjh==1&&stg==1>(定向计划)<#elseif tp.isjh==2&&stg==1>(鹊桥活动)<#elseif tp.isjh==3&&stg==1>(营销计划)<#elseif tp.isjh==5&&stg==1>(先领券后购买)</#if></div>
+	&nbsp;&nbsp;&nbsp;
+	<div id="issend"><#if stg==1><#if isgroupsend gt 0>已加群发<#else><button class="am-btn am-btn-danger" onclick="tosend(${tp.id?c});">加入群发</button></#if></#if></div>
+  	</td>
+  </tr>
+  <tr>
+  	<td align="center"><br></td>
+  </tr>
+</table>
+
+</div>
+
+<script src="js/clipboard.min.js"></script>
+<script>
+   <#if tp.isjh==5>
+	   var clipboard0 = new Clipboard('#btn0');
+	
+	   clipboard0.on('success', function(e) {
+	       $("#btn0").html("已复制");
+	       $("#btn0").attr("disabled", true); 
+	   });
+	
+	   clipboard0.on('error', function(e) {
+	       $("#btn0").html("复制失败");
+	       $("#btn0").attr("disabled", true); 
+	   });
+	   
+	   var clipboard1 = new Clipboard('#btn1');
+	
+	   clipboard1.on('success', function(e) {
+	       $("#btn1").html("已复制");
+	       $("#btn1").attr("disabled", true); 
+	   });
+	
+	   clipboard1.on('error', function(e) {
+	       $("#btn1").html("复制失败");
+	       $("#btn1").attr("disabled", true); 
+	   });
+   <#else>
+	   var clipboard = new Clipboard('#btn');
+	
+	   clipboard.on('success', function(e) {
+	       $("#btn").html("已复制");
+	       $("#btn").attr("disabled", true); 
+	   });
+	
+	   clipboard.on('error', function(e) {
+	       $("#btn").html("复制失败");
+	       $("#btn").attr("disabled", true); 
+	   });
+   </#if>
+</script>
+</body>
+</html>

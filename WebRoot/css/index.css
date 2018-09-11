@@ -1,0 +1,77 @@
+﻿@charset "utf-8";
+/* CSS Document */
+a{ text-decoration:none; }
+.logo{ width:40%; margin-left:auto; margin-right:auto; margin-top:150px;}
+.renren{ width:100%; line-height:25px; background:white; border:none; border-radius:10px; border:1px solid black;}
+.qq{ margin-left:auto; margin-right:auto; width:50%; margin-top:20px;}
+.ren{ margin-top:100px;}
+.ree{ width:50%; border:none; background:none;}
+.xian{ width:98%; height:2px; background:white;}
+.box{ width:95%; margin-left:auto; margin-right:auto;}
+.mima{ margin-top:8px;}
+a img{ display:block;}
+.but{ margin-left:auto; margin-right:auto; margin-top:20px;}
+/*考勤*/
+.cat{ width:50%; margin-left:auto; margin-right:auto; margin-top:50px;}
+.cat img{border-radius:50%;}
+.wenzi{ margin-top:30px; text-align:center;}
+.long1{ width:90%; margin-left:auto; margin-right:auto; margin-top:30px;}
+.rst{ color:#333; font-size:18px; font-weight:bold; width:90%; margin-top:10px; margin-left:auto; margin-right:auto;line-height:40px; text-align:center;background:white; border-radius:10px; border:black 1px solid;}
+/*学员注册*/
+.title{ line-height:40px;width:100%; overflow:hidden; background:#0da6e5;}
+.title img{ float:left; margin-top:7px; margin-left:2%;}
+.title_t{ font-size:20px; text-align:center; color:white;}
+.bg{ width:100%; height:auto; overflow:hidden;}
+.cat_c{ width:40%; margin-left:auto; margin-right:auto; margin-top:20px;}
+.cat_c img{ border-radius:50%;}
+.box_name{ width:84%; margin-left:auto; margin-right:auto;
+margin-top:40px;}
+.name_one_n{ border:none; background:none;}
+.box_class{ margin-top:20px;}
+.box_class_b{ width:60%; border:none; margin-left:10%; background:none;}
+.button_t{ margin-left:auto; margin-right:auto; width:40%;}
+.button{ margin-top:50px; line-height:25px; width:100%; border:none; background:white; border:1px solid black; border-radius:5px;}
+.button_b{ width:100%; margin-top:20px; line-height:25px; border:none; background:white; border:1px solid black; border-radius:5px;}
+/*补卡*/
+.tele_num{ width:90%; margin-left:auto; margin-right:auto;}
+.tele_num_t{ width:100%; overflow:hidden; margin-top:20px;}
+.tele_num_m{ border:none; border-bottom:1px solid #333; width:50%;}
+.tele_num_n{ width:15%; background:#FFF; border:none; border-radius:5px;border:#000 1px solid;}
+.big_hui{ width:100%; height:496px; background:#bababa; margin-top:20px; overflow:hidden;}
+.big_hui img{ width:30%; float:right; margin-top:50px; margin-right:3%;}
+.name{ color:white; margin-top:200px; margin-left:8%;}
+.name_n{ width:30%; border:none; background:none; border-bottom:#FFF 1px solid;}
+.name_a{ color:white; margin-top:30px; margin-left:8%;}
+.button_o{ margin-left:auto; margin-right:auto; width:60%;}
+.button_bb{ margin-top:50px; margin-bottom:20px; line-height:25px; width:100%; border:none; background:white; border-radius:5px; border:black 1px solid;}
+.button_nn{ width:100%;margin-bottom:15px; line-height:25px;  margin-top:20px; border:none; background:white; border-radius:5px; border:black 1px solid;}
+/*注销*/
+.change{ height:25px; width:60%; border:none; border:1px solid #000; background:none; margin-left:5%;}
+.tele_num_nn{ margin-left:20%; width:60%; line-height:25px; border:none; background:white; border:1px solid black; border-radius:5px;}
+.nfc{ margin-top:10px;}
+.chose{ margin-top:20px;text-align:center; font-size:20px; font-weight:bold;}
+.over{ width:60%; margin-top:10px; margin-left:auto; margin-right:auto;}
+.left{ width:35%; float:left; background:white; border:none; border:black 1px solid; border-radius:5px; margin-bottom:5px;}
+.right{ width:35%; float:right; background:white; border:none; border:black 1px solid; border-radius:5px; margin-bottom:5px;}
+/*系统设置*/
+.certen{ width:80%; margin-left:auto; margin-right:auto; margin-top:50px;}
+.mima_one{ width:100%; line-height:50px; background:white; border-radius:10px; border:#000 1px solid; font-size:16px; float:left; color:black; margin-top:20px;}
+.mima_one img{ float:right; margin-top:15px; margin-right:2%;}
+.mima_two{ width:100%; line-height:50px;  background:white; border-radius:10px; border:#000 1px solid; font-size:16px; float:left; color:balck; margin-top:20px;}
+.mima_two a{ text-decoration:none; color:#333; float:right; margin-top:15px; margin-right:2%;}
+.zz{ float:right;}
+/*改密*/
+.last{ width:80%; margin-left:auto; margin-right:auto; margin-top:40px;}
+.last_l{ background:white; border-radius:5px; margin-top:20px; border:#000 1px solid; width:100%; color:black; font-family:"微软雅黑";line-height:40px; border-radius:5px;}
+.last_ll{ width:60%; border:none; background:none;}
+.xiugai{ width:30%; margin-left:auto; margin-right:auto;}
+.tt{ line-height:25px; width:100%; margin-top:20px; border:none; background:white; border:black 1px solid; border-radius:10px;}
+/*加页*/
+.infree{margin-top:40px; width:90%;  background:#c6c6c6; overflow:hidden; border-radius:10px; margin-left:auto; margin-right:auto;}
+.touxiang{ width:30%; float:right; margin-top:50px; margin-right:2%;}
+.touxiang img{ border-radius:50%;}
+.aa{ margin-top:50px; color:white; margin-left:5%; font-family:"微软雅黑"; font-weight:bold;}
+.aa_a{ border:none; background:none; width:35%;}
+.ss{ margin-top:20px; color:white; margin-left:5%; font-family:"微软雅黑"; font-weight:bold;}
+ul{ margin:0px; padding:0px;}
+ul, ol, li {list-style-type:none;vertical-align:0}

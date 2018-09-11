@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="${basePath}/lib/html5.js"></script>
+<script type="text/javascript" src="${basePath}/lib/respond.min.js"></script>
+<script type="text/javascript" src="${basePath}/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="${basePath}/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/lib/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+<link href="${basePath}/lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link href="${basePath}/lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="${basePath}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>${pageTitle}</title>
+</head>
+</head>
+<body>
+<nav class="breadcrumb"><i class="iconfont">&#xf012b;</i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span> 日志查询 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="icon-refresh"></i></a></nav>
+<form action="loglist" id="searchform" method="post">
+<input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"/>
+<div class="pd-20">
+  <div class="text-c">
+  	&nbsp;日志类型：
+        
+    <span class="select-box" style="width:139px;">    
+  	<select class="select" id="logtype" name="logtype">
+      <option value="">全部</option>
+      <option value="1" <#if logtype==1>selected</#if>>系统日志</option>
+      <option value="2" <#if logtype==2>selected</#if>>操作日志</option>
+      <option value="3" <#if logtype==3>selected</#if>>登录日志</option>
+    </select>
+    </span>
+  	&nbsp;日期范围：
+    <input type="text" onfocus="WdatePicker({maxDate:'%y-%M-%d'})" id="logstime" name="logstime" class="input-text Wdate" style="width:120px;" value="${logstime}"/>
+    -
+    <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logstime\')}'})" id="logetime" name="logetime" class="input-text Wdate" style="width:120px;" value="${logetime}"/>
+  	&nbsp;日志内容：
+  	<input type="text" name="logcontent" id="logcontent" placeholder=" 关键字" style="width:150px" class="input-text" value="${logcontent}">
+    <button type="button" class="btn radius btn-success" id="" name="" onclick="toSubmit();"><i class="icon-search"></i> 查询</button>
+
+  </div>
+  
+  <div class="cl pd-5 bg-1 bk-gray mt-20">
+    <span class="l">
+    	<!-- <a href="javascript:;" onclick="ordercancel()" class="btn btn-danger radius"><i class="icon-trash"></i> 批量删除</a> -->
+    </span>
+    <span class="r">共有数据：<strong>${page.totalRecord}</strong> 条</span>
+  </div>
+  <table class="table table-border table-bordered table-bg table-hover table-sort">
+    <thead>
+      <tr class="text-c">
+        <!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
+        <th width="70">日志类型</th>
+        <th width="160">发生时间</th>
+        <th width="400">日志内容</th>
+        <th width="70">操作人</th>
+        <th width="120">操作IP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <#list page.list as log>
+      <tr class="text-c">
+        <!--<td><input type="checkbox" value="${log.id}" name="logids"></td>-->
+        <td>
+        <#if log.logtype == 1>
+        	系统日志
+        <#elseif log.logtype == 2>
+       		操作日志
+        <#elseif log.logtype == 3>
+        	登录日志
+        <#elseif log.logtype == 4>
+        	退出日志
+        </#if>
+        </td>
+       
+        <td>${log.logtime?datetime("yyyy-MM-dd HH:mm:ss")}</td>
+        <td title="${log.content}">
+        <#if log.content?length lt 20>   
+			${log.content}
+		<#else> 
+		    ${log.content[0..19]}... 
+		</#if>
+		</td>
+		
+        <td>${log.loguser}</td>
+		<td>${log.logip}</td>
+      </tr>
+      </#list>
+    </tbody>
+  </table>
+	<div id="laypage" class="pageNav"></div>
+</div>
+</form>
+<script type="text/javascript" src="${basePath}/lib/jquery.min.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/layer1.8/layer.min.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/laypage/laypage.js"></script> 
+<script type="text/javascript" src="${basePath}/js/H-ui.js"></script> 
+<script type="text/javascript" src="${basePath}/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="${basePath}/js/H-ui.admin.doc.js"></script>
+<script type="text/javascript" src="${basePath}/lib/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+laypage({
+     cont: $('#laypage'), //容器。值支持id名、原生dom对象，jquery对象,
+     pages: ${page.totalPage}, //总页数
+     skip: false, //是否开启跳页
+     skin: '#333',
+     groups: 5, //连续显示分页数
+     curr: ${page.currentPage}, //初始化当前页
+     jump: function(e, first){ //触发分页后的回调
+        if(!first){ //一定要加此判断，否则初始时会无限刷新 	
+            document.getElementById("currentPage").value = e.curr;
+			document.getElementById("searchform").submit();
+        }
+     }
+});
+
+function toSubmit(){
+	document.getElementById("currentPage").value=1;
+	document.getElementById("searchform").submit();
+}
+</script>
+</body>
+</html>

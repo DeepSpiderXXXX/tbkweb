@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>${tp.pname}</title>
+		<link href="${basePath}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<div id='wx_pic' style='margin:0 auto;display:none;width:300px;height;300px;'>
+		<img src='${tp.imgurl}' />
+		</div>
+		<script>
+		//百度统计
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5d66cde56cd419a7e8988389cf0468b9";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+	</head>
+</head>
+<style>
+div, body {
+	padding: 0;
+	margin: 0;
+	 color:#020202; font-family:"Arial", "Microsoft YaHei"
+}
+.wapper {
+	width:100%;
+	margin: 0 auto;
+}
+.ydimg {
+	border: none; width:100%; vertical-align: top;
+}
+
+</style>
+<script type="text/javascript">
+	function tobuy(){
+		window.location.href="${tp.clong}";
+	}
+	
+	function torebuy(){
+		window.location.href="${tp.tbklong}";
+	}
+</script>
+
+<body>
+<div class="wapper"> 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <#if browser=="wx">
+  <tr>
+    <td><img class="ydimg" src="${basePath}/images/tipwx.jpg" /></td>
+  </tr>
+  </#if>
+  <tr>
+  	<td align="center"><br></td>
+  </tr>
+  <tr>
+    <td align="center"><img style="width:70%" src="${tp.imgurl}" /></td>
+  </tr>
+  <tr>
+  	<td align="center"><div style="width:90%">${tp.pname}</div></td>
+  </tr>
+  <#if browser!="wx">
+  <tr>
+  	<td align="center"><br></td>
+  </tr>
+  <tr>
+  	<td align="center">
+  		<#if tp.isjh==5>
+  			<button class="am-btn am-btn-danger" onclick="tobuy();">先领券</button>&nbsp;&nbsp;&nbsp;
+  			<button class="am-btn am-btn-danger" onclick="torebuy();">去购买</button>
+  		<#else>
+  			<button class="am-btn am-btn-danger" onclick="tobuy();">领券购买</button>
+  		</#if>
+  	</td>
+  </tr>
+  </#if>
+  <tr>
+  	<td align="center"><br></td>
+  </tr>
+</table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="${basePath}/lib/html5.js"></script>
+<script type="text/javascript" src="${basePath}/lib/respond.min.js"></script>
+<script type="text/javascript" src="${basePath}/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="${basePath}/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/lib/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+<link href="${basePath}/lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link href="${basePath}/lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="${basePath}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<style type="text/css">
+.btn-upload{position: relative; display:inline-block;height:36px; *display:inline;overflow:hidden;vertical-align:middle;cursor:pointer}
+.upload-url{cursor: pointer}
+.input-file{position:absolute; right:0; top:0; cursor: pointer; z-index:1; font-size:30em; *font-size:30px;opacity:0;filter: alpha(opacity=0)}
+.btn-upload .input-text{ width:auto;}5..form-group .upload-btn{ margin-left:-1px}
+</style>
+<title>${pageTitle}</title>
+</head>
+<body>
+	<div class="pd-20">
+		<form class="Huiform" action="update" method="post" id="userform" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${group.id}">
+		<table class="table table-border table-bordered table-bg">
+					<tbody>
+						<tr>
+							<th class="text-r" width="200px"><span class="c-red">*</span>群名称：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="输入群名称" name="groupname" id="groupname" value="${group.groupname}" datatype="*1-100" nullmsg="群名称不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr>
+						<tr>
+							<th class="text-r" width="100px"><span class="c-red">*</span>PID：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="输入PID" name="pid" id="pid" value="${group.pid}" datatype="*1-100" nullmsg="PID不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr><tr>
+							<th class="text-r" width="100px"><span class="c-red">*</span>上级群ID(顶级填0)：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="上级群ID(顶级填0)" name="parentid" id="parentid" value="${group.parentid}" datatype="*1-100" nullmsg="上级群ID不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr>
+						<tr>
+							<th class="text-r" width="100px"><span class="c-red">*</span>分成比例(1-100)%：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="输入分成比例" name="fc" id="fc" value="${group.fc}" datatype="*1-100" nullmsg="分成比例不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr>
+						<tr>
+							<th class="text-r" width="100px"><span class="c-red">*</span>开始时间：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="输入开始时间" name="stime" id="stime" value="${group.stime}" datatype="*1-100" nullmsg="开始时间不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr>
+						<tr>
+							<th class="text-r" width="100px"><span class="c-red">*</span>结束时间：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="输入结束时间" name="etime" id="etime" value="${group.etime}" datatype="*1-100" nullmsg="结束不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr>
+						<tr>
+							<th class="text-r" width="100px"><span class="c-red">*</span>微信名称：</th>
+							<td>
+							<div class="formControls col-4">
+								<input class="input-text" style="width:220px" type="text" placeholder="微信名称" name="wxname" id="wxname" value="${group.wxname}" datatype="*1-100" nullmsg="微信名称不能为空" maxlength="100">
+							</div>
+							<div class="col-3"></div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><button type="submit" class="btn btn-success radius"
+									id="" name="">
+									<i class="icon-save"></i> 保存
+								</button></td>
+						</tr>
+					</tbody>
+				</table>
+		</form>
+	</div>
+<script type="text/javascript" src="${basePath}/lib/jquery.min.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/layer1.8/layer.min.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/laypage/laypage.js"></script> 
+<script type="text/javascript" src="${basePath}/js/H-ui.js"></script> 
+<script type="text/javascript" src="${basePath}/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="${basePath}/js/H-ui.admin.doc.js"></script> 
+<script type="text/javascript" src="${basePath}/lib/passwordStrength-min.js"></script> 
+<script type="text/javascript">
+	$("#userform").Validform({
+		tiptype:2
+	});
+	<#if rs?if_exists>
+		function parentSubmit(){
+			parent.document.getElementById('searchform').submit();
+		}
+		<#if rs == "1">
+			parent.layer.msg('修改成功',2,9);
+			setInterval(parentSubmit, 2000);
+		<#else>
+			parent.layer.msg('修改失败',2,8);
+			setInterval(parentSubmit, 2000);
+		</#if>
+	</#if>
+</script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

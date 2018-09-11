@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head profile="http://gmpg.org/xfn/11">
+        <title>天天淘惠</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta content="telephone=no" name="format-detection" />     
+		<link rel="stylesheet" type="text/css" href="css/wap.css?timestamp=884d0157c4ffe70b625e4ec81ab68791" />
+        <script type="text/javascript" src="js/wap.js?timestamp=884d0157c4ffe70b625e4ec81ab68791" charset="UTF-8"></script>
+        <script>
+		//百度统计
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5d66cde56cd419a7e8988389cf0468b9";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+    </head>
+    <body>
+<!--顶部-->
+<div id="header">
+    <div class="logo"><a href="javascript:void(0)/mobile"><img alt="" src="images/logo.png" /></a></div>
+    <p class="Title">天天淘惠</p>
+    <div class="clear"></div>
+</div>
+<!--中间主体-->
+<div class="container personalPage" id="personalPage">
+	<#if group?if_exists>
+    <!--用户信息start-->
+    <div class="userinfo">
+        <a href='javascript:void(0);'>
+			<img class="head" alt="" src="http://static.doyouhike.net/files/faces/none_header.gif" />
+		</a>
+		<div class="info">
+			<div class="level">
+				<a class='avisited' href='javascript:void(0);'>${group.wxname}</a>
+												</div>
+						<div class="login_opreate">
+				<a class='avisited' href='javascript:;'>注册时间&nbsp;&nbsp;${group.createtime?date}</a>
+			</div>
+					</div>
+    </div>
+    <!--用户信息 end-->
+    <!--个人信息start-->
+    <#if isshow==1>    
+    <a class='avisited' href='http://www.totaohui.com/index?g=${group.id}'><div class="msg_subject">我的网站&nbsp;&nbsp;<span style="color:#fa7b00;">(用于推广的网站)</span></div></a>
+    <a class='avisited' href='http://www.totaohui.com/sr?id=${group.id}<#if group.id==1>&flag=86</#if>'><div class="msg_subject" >我的报表&nbsp;&nbsp;<span style="color:#fa7b00;">(查询订单和佣金)</span></div></a>
+    <a class='avisited' href='http://www.totaohui.com/index?g=${group.id}&stg=1<#if group.id==1>&flag=86</#if>'><div class="msg_subject">佣金查询&nbsp;&nbsp;<span style="color:#fa7b00;">(查看网站商品的佣金)</span></div></a>
+    <a class='avisited' href='http://www.totaohui.com/tourl?g=${group.id}'><div class="msg_subject">链接转换&nbsp;&nbsp;<span style="color:#fa7b00;">(将手机淘宝的商品转换)</span></div></a>
+    <a class='avisited' href='http://www.totaohui.com/find?g=${group.id}'><div class="msg_subject">商品搜索&nbsp;&nbsp;<span style="color:#fa7b00;">(查找网站上没有的商品)</span></div></a>
+    </#if>
+    <div class="clearfix"></div>
+    <!--个人信息end-->
+    </#if>
+</div>
+
+<!--底部-->
+<div id="footer">
+	<ul>
+		<li><a href="http://www.totaohui.com/index?g=${group.id}">天天淘惠</a>|</li>
+		<li><a href="http://www.totaohui.com/index?g=${group.id}">网站信息</a></li>
+	</ul>
+</div>
+</body>
+</html>
+
+
+
+
+

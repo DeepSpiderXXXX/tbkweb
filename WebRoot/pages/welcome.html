@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="lib/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+<link href="lib/font-awesome/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link href="lib/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>${pageTitle}</title>
+</head>
+<body>
+<div class="pd-20" style="padding-top:20px;">
+  <p class="f-20 text-success">欢迎使用${pageTitle} <span class="f-14"></span></p>
+  <p>登录次数：${logtimes} </p>
+  <p>上次登录IP：${lastlog.logip!"首次登录"}</p>
+  <p>上次登录时间：<#if lastlog.logtime?exists>${lastlog.logtime?datetime("yyyy-MM-dd HH:mm:ss")}<#else>首次登录</#if></p>
+  <p>ukey有效期：<#if user.stime?exists&&user.etime?exists>${user.stime?date("yyyy-MM-dd")} 至  ${user.etime?date("yyyy-MM-dd")}<#else>无限期</#if></p>
+</div>
+<!-- 
+<footer class="footer">
+  
+</footer>
+ -->
+<script type="text/javascript" src="lib/jquery.min.js"></script>
+<script type="text/javascript" src="js/H-ui.js"></script>
+<script type="text/javascript" src="js/H-ui.admin.doc.js"></script>
+
+</body>
+</html>

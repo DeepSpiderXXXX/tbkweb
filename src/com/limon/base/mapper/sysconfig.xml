@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.SysConfigDao">
+	<select id="getSysConfig" parameterType="java.lang.String" resultType="com.limon.base.model.SysConfig">
+		select * from sys_config where config_key=#{configkey}
+    </select>
+    <select id="getSysConfigs" parameterType="java.util.Map"
+		resultType="com.limon.base.model.SysConfig">
+			select * from sys_config
+			<where>
+				<if test="CONFIG_KEY != null and CONFIG_KEY !=''">
+					config_key like '%' || #{config_key} || '%'
+				</if>
+			</where>
+		limint #{pageStart} ,#{pageSize}
+	</select>
+	<select id="getSysConfigsCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(*) from sys_config
+		<where>
+			<if test="CONFIG_KEY != null and CONFIG_KEY !=''">
+				config_key like '%' || #{config_key} || '%'
+			</if>
+		</where>
+	</select>
+	<select id="getSysConfigsNoPage" parameterType="java.util.Map"
+		resultType="com.limon.base.model.SysConfig">
+		select * from sys_config
+		<where>
+			<if test="id != null and id !=''">
+				id=#{id}
+			</if>
+			<if test="config_key != null and config_key !=''">
+				and config_key=#{config_key}
+			</if>
+		</where>
+	</select>
+	<select id="getIsUseSysConfig" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from sys_config
+		<where>
+			<if test="id != null and id !=''">
+				id!=#{id}
+			</if>
+			<if test="config_key != null and config_key !=''">
+				and config_key=#{config_key}
+			</if>
+		</where>
+	</select>
+	<insert id="insertSysConfig" parameterType="java.util.Map">
+		insert into sysconfig (config_key)
+		values
+		(#{config_key})
+	</insert>
+	<select id="getSysConfigById" parameterType="java.util.Map"
+		resultType="com.limon.base.model.SysConfig">
+		select * from config_key
+		<where>
+			<if test="id != null and id !=''">
+				id=#{id}
+			</if>
+		</where>
+	</select>
+	<update id="updateSysConfigById" parameterType="java.util.Map">
+		update sys_config set config_key=#{config_key},config_value=#{config_value},config_type=#{config_type} where 
+		id=#{id}
+	</update>
+	<delete id="deleteSysConfigById" parameterType="java.util.Map">
+    	delete from sys_config where id = #{id}
+    </delete>
+</mapper>

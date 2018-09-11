@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.limon.base.dao.SysUserDao">
+    <select id="getUserByUserNameAndPassword" parameterType="java.util.Map" resultType="com.limon.base.model.SysUser">
+		select a.*,c.id as roleid,c.rolename
+		from sys_user a left join sys_user_role b on a.id=b.userid 
+		left join sys_role c on b.roleid=c.id 
+		where username=#{username} and password=#{password}
+    </select>
+    <select id="getUserByUkey" parameterType="java.lang.String" resultType="com.limon.base.model.SysUser">
+		select a.*,c.id as roleid,c.rolename 
+		from sys_user a left join sys_user_role b on a.id=b.userid 
+		left join sys_role c on b.roleid=c.id 
+		where ukey=#{ukey}
+    </select>
+    <update id="updatePassword" parameterType="java.util.Map">
+		update sys_user set password=#{newpassword} where id=#{userid}
+	</update>
+	<update id="updateQzidBydpid" parameterType="java.util.Map">
+		update sys_user set qzid=#{qzid} where dpid=#{dpid}
+	</update>
+</mapper>
